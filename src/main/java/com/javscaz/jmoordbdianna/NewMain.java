@@ -14,6 +14,7 @@ import org.jnosql.diana.api.document.DocumentCondition;
 import org.jnosql.diana.api.document.DocumentConfiguration;
 import org.jnosql.diana.api.document.DocumentEntity;
 import org.jnosql.diana.api.document.DocumentQuery;
+import org.jnosql.diana.api.document.Documents;
 import org.jnosql.diana.mongodb.document.MongoDBDocumentConfiguration;
 
 /**
@@ -21,7 +22,8 @@ import org.jnosql.diana.mongodb.document.MongoDBDocumentConfiguration;
  * @author avbravo
  */
 public class NewMain {
- public static final String DATABASE = "tallerdb";
+
+    public static final String DATABASE = "tallerdb";
     public static final String DOCUMENT_COLLECTION = "person";
 
     /**
@@ -29,8 +31,8 @@ public class NewMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-         DocumentConfiguration configuration = new MongoDBDocumentConfiguration();
-        try(DocumentCollectionManagerFactory collectionFactory = configuration.get();) {
+        DocumentConfiguration configuration = new MongoDBDocumentConfiguration();
+        try (DocumentCollectionManagerFactory collectionFactory = configuration.get();) {
             DocumentCollectionManager collectionManager = collectionFactory.get(DATABASE);
 
             DocumentEntity entity = DocumentEntity.of(DOCUMENT_COLLECTION);
@@ -43,13 +45,19 @@ public class NewMain {
             DocumentQuery query = DocumentQuery.of(DOCUMENT_COLLECTION);
             query.and(DocumentCondition.eq(id.get()));
             List<DocumentEntity> documentsFound = collectionManager.find(query);
+            for (DocumentEntity de : documentsFound) {
+                System.out.println(de.getDocuments());
+                for (Document d : de.getDocuments()) {
+                    System.out.println("d " + d.toString());
 
+                }
+            }
 
-      }
+        }
         //catch(Exception ex){
 //            System.out.println("error() "+ex.getLocalizedMessage());
 //        }
-        
+
     }
-    
+
 }
