@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.javscaz.jmoordbdianna;
+package com.avbravo.jmoordbdianna.examples;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +22,7 @@ import org.jnosql.diana.mongodb.document.MongoDBDocumentConfiguration;
  *
  * @author avbravo
  */
-public class NewMain {
+public class Ejemplo {
 
     public static final String DATABASE = "tallerdb";
     public static final String DOCUMENT_COLLECTION = "person";
@@ -29,7 +30,8 @@ public class NewMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
+    public void ejemplo(){
         // TODO code application logic here
         DocumentConfiguration configuration = new MongoDBDocumentConfiguration();
         try (DocumentCollectionManagerFactory collectionFactory = configuration.get();) {
